@@ -1,3 +1,5 @@
+import random
+
 """
 PASOS
 1. Configurar Juego**\: Crear juego con jugadores, el juego debe tener los límites de kilómetros por 
@@ -7,37 +9,56 @@ PASOS
 3. Revisar como hacer el dado tal vez con random
 """
 
-class Juego:
-    def __init__(self, njugador1, njugador2, nconductor1, nconductor2, npista):
-        self.jugador1 = njugador1
-        self.jugador2 = njugador2
-        self.conductor1 = nconductor1
-        self.conductor2 = nconductor2
-        self.pista = npista
-    def __str__(self):
-        return f'Jugadores: {self.jugador1}, {self.jugador2} \nConductores: {self.conductor1}, {self.conductor2} \npista: {self.pista}'
+class Juego():
+    def __init__(self, n_jugadores, distancia):
+        # Contiene la configuración inicial del juego 
+        self.bienvenida = "¡Bienvenido al juego de carros por consola!"       
+        self.cantidad_jugadores = n_jugadores
+        self.distancia_km = distancia
+        self.configuracion = f'usted ha elegido {self.cantidad_jugadores} jugadores \ncon una pista de {self.distancia_km} km'
+        
+class Jugador(): 
+    # nombre jugador
+    # id jugador
+    # cantidad jgadores
 
-class Jugador():
+    # carro asociado
     pass
 
 class Conductor():
+    # hereda jugador
+    # mas carril asociado.
+    pass
+
+class Carro():
+    # debe tener un conductor
+    # debe tener un carril    
     pass
 
 class Pista():
-    pass
+    # límite distancia
+    # cantidad carriles ej: 3 carriles
+    pass  
 
 class Carril():
+    # Número Carril
+    # Carro asociado    
     pass
 
 class Podio():
+    # podio nombre jugador 
+    # posición 1 = oro
+    # posicion 2 = plata
+    # posicion 3 = bronce
     pass
 
 
-nombre_jugador1 = input("¿Nombre del primer jugador?: ")
-nombre_jugador2 = input("¿Nombre del segundo jugador?: ")
-nombre_conductor1 = f'Conductor {nombre_jugador1}'
-nombre_conductor2 = f'Conductor {nombre_jugador2}'
-pista = "pista1"
+n_jugadores = int(input("Número de jugadores: " ))
+distancia = int(input("Distancia en kilómetos de la pista: "))
+inicio_juego = Juego(n_jugadores, distancia)
+print(inicio_juego.bienvenida)
+print(inicio_juego.configuracion)
+# preguntar marca carro
+# preguntar cantidad km de la pista.
+# los carriles van orden de llegada jugador1 con carril1, jugador2 con carril3, jugador3 con carril3
 
-juego_carrera = Juego(nombre_jugador1, nombre_jugador2, nombre_conductor1, nombre_conductor2, pista)
-print(juego_carrera)
