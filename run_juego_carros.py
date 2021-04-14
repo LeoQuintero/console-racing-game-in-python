@@ -13,32 +13,43 @@ class Juego():
     def __init__(self):
         # Contiene la configuración inicial del juego 
         self.bienvenida = "¡Bienvenido al juego de carros por consola!"            
-        self.cantidad_jugadores = int(input('Ingrese cantidad de jugadores: ')) 
+        self.cantidad_jugadores = 'Ingrese cantidad de jugadores: '
+        self.dato_nombre_jugador = 'Ingrese el nombre del jugador #'
+        self.dato_nombre_conductor = "Asigne un nombre a su conductor: "
+        self.dato_marca_carro = "eliga una opción para marca de carro:\n 1. Lotus Evija\n 2. NIO EP9\n"
             
                
         
 class Jugador(Juego): 
     # Adiciona en una diccionario el id con nombre del jugador  que ingrese el usuario.
-    def __init__(self):
-        Juego.__init__(self)
-        self.dato_nombre_jugador = 'Ingrese el nombre del jugador #'
-    
+       
     def adiciona_jugador(self):
-        cantidad_jugadores = self.cantidad_jugadores
+        cantidad_jugadores = int(input(self.cantidad_jugadores))
         jugadores_dict = {}
         for id_jugador in range(1, cantidad_jugadores+1):
             nombre_jugador = input(f'{self.dato_nombre_jugador}{id_jugador}: ')          
-            jugadores_dict[id_jugador+100] = {'nombre': nombre_jugador}
+            jugadores_dict[id_jugador+100] = {'jugador': nombre_jugador}
         return jugadores_dict          
 
 
-class Conductor():
-    pass      
+class Conductor(Jugador):    
+    def adiciona_conductor(self):
+        jugadores_dict = self.adiciona_jugador()
+        for id_jugador in jugadores_dict.keys():
+            nombre_jugador = jugadores_dict[id_jugador]['jugador']
+            nombre_conductor = input(f'para el jugador {nombre_jugador} {self.dato_nombre_conductor}: ')
+            jugadores_dict[id_jugador]['conductor'] = nombre_conductor
+        return jugadores_dict
 
-class Carro():
-    # debe tener un conductor
-    # debe tener un carril    
-    pass
+
+class Carro(Conductor):
+    def adiciona_carro(self):
+        jugadores_dict = self.adiciona_conductor()
+        for id_jugador in jugadores_dict.keys():
+            nombre_conductor = jugadores_dict[id_jugador]['conductor']
+            nombre_carro = input(f'para el jugador {nombre_conductor} {self.dato_marca_carro} : ')
+            jugadores_dict[id_jugador]['carro'] = nombre_carro
+        return jugadores_dict  
 
 class Pista():
     # límite distancia
@@ -63,8 +74,10 @@ inicio_juego = Juego(n_jugadores)
 print(inicio_juego.bienvenida
 """
 
-prueba = Jugador()    
-print(prueba.adiciona_jugador())
+jugador = Carro()  
+print(jugador.bienvenida)  
+jugadores_dict = jugador.adiciona_carro()
+print(jugadores_dict)
 
 
 
