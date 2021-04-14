@@ -10,14 +10,24 @@ PASOS
 """
 
 class Juego():
-    def __init__(self, n_jugadores, distancia):
+    def __init__(self, n_jugadores):
         # Contiene la configuración inicial del juego 
         self.bienvenida = "¡Bienvenido al juego de carros por consola!"       
-        self.cantidad_jugadores = n_jugadores
-        self.distancia_km = distancia
-        self.configuracion = f'usted ha elegido {self.cantidad_jugadores} jugadores \ncon una pista de {self.distancia_km} km'
+        self.cantidad_jugadores = n_jugadores        
+               
         
-class Jugador(): 
+class Jugador(Juego): 
+    # Adiona en una diccionario el id con nombre del jugador.
+    def adicionar_jugador(self):
+        pregunta = "adicione el nombre del jugador #"
+        player_dict = {}
+        for nplayer in range(1, self.cantidad_jugadores+1):  
+            name_player = input(f'{pregunta}{nplayer}:')
+            player_dict[nplayer] = name_player
+            print(player_dict)
+
+            
+
     # nombre jugador
     # id jugador
     # cantidad jgadores
@@ -52,12 +62,19 @@ class Podio():
     # posicion 3 = bronce
     pass
 
-
+"""
 n_jugadores = int(input("Número de jugadores: " ))
 distancia = int(input("Distancia en kilómetos de la pista: "))
 inicio_juego = Juego(n_jugadores, distancia)
 print(inicio_juego.bienvenida)
 print(inicio_juego.configuracion)
+"""
+
+prueba = Jugador(5)
+print(prueba.bienvenida)
+print(prueba.adicionar_jugador())
+
+
 # preguntar marca carro
 # preguntar cantidad km de la pista.
 # los carriles van orden de llegada jugador1 con carril1, jugador2 con carril3, jugador3 con carril3
