@@ -13,26 +13,27 @@ class Juego():
     def __init__(self):
         # Contiene la configuración inicial del juego 
         self.bienvenida = "¡Bienvenido al juego de carros por consola!"            
-        self.cantidad_jugadores = int(input('ingrese cantidad de jugadores: '))      
+        self.cantidad_jugadores = int(input('Ingrese cantidad de jugadores: ')) 
+            
                
         
 class Jugador(Juego): 
-    # Adiona en una diccionario el id con nombre del jugador  que ingrese el usuario.
+    # Adiciona en una diccionario el id con nombre del jugador  que ingrese el usuario.
+    def __init__(self):
+        Juego.__init__(self)
+        self.dato_nombre_jugador = 'Ingrese el nombre del jugador #'
+    
     def adiciona_jugador(self):
-        pregunta = "adicione el nombre del jugador #"
-        jugador_dict = {}
         cantidad_jugadores = self.cantidad_jugadores
-        for nplayer in range(1, cantidad_jugadores+1):  
-            name_player = input(f'{pregunta} {nplayer}:')    
-            jugador_dict[nplayer+100] = name_player
-        return jugador_dict    
+        jugadores_dict = {}
+        for id_jugador in range(1, cantidad_jugadores+1):
+            nombre_jugador = input(f'{self.dato_nombre_jugador}{id_jugador}: ')          
+            jugadores_dict[id_jugador+100] = {'nombre': nombre_jugador}
+        return jugadores_dict          
 
-class Conductor(Jugador):
-    def adiciona_conductor(self):
-        jugador_dict = self.adiciona_jugador()
-        for (id, jugador) in jugador_dict.items():
-            jugador_dict[id] = [jugador, f'conductor {jugador}'] 
-        return jugador_dict        
+
+class Conductor():
+    pass      
 
 class Carro():
     # debe tener un conductor
@@ -62,8 +63,8 @@ inicio_juego = Juego(n_jugadores)
 print(inicio_juego.bienvenida
 """
 
-prueba = Conductor()    
-print(prueba.adiciona_conductor())
+prueba = Jugador()    
+print(prueba.adiciona_jugador())
 
 
 
