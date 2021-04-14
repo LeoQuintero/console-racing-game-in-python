@@ -22,18 +22,9 @@ class Jugador(Juego):
         pregunta = "adicione el nombre del jugador #"
         player_dict = {}
         for nplayer in range(1, self.cantidad_jugadores+1):  
-            name_player = input(f'{pregunta}{nplayer}:')
-            player_dict[nplayer] = name_player
+            name_player = input(f'{pregunta} {nplayer}:')    
+            player_dict[nplayer+100] = name_player
             print(player_dict)
-
-            
-
-    # nombre jugador
-    # id jugador
-    # cantidad jgadores
-
-    # carro asociado
-    pass
 
 class Conductor():
     # hereda jugador
@@ -64,13 +55,11 @@ class Podio():
 
 """
 n_jugadores = int(input("Número de jugadores: " ))
-distancia = int(input("Distancia en kilómetos de la pista: "))
-inicio_juego = Juego(n_jugadores, distancia)
-print(inicio_juego.bienvenida)
-print(inicio_juego.configuracion)
+inicio_juego = Juego(n_jugadores)
+print(inicio_juego.bienvenida
 """
 
-prueba = Jugador(5)
+prueba = Jugador(3)
 print(prueba.bienvenida)
 print(prueba.adicionar_jugador())
 
