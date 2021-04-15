@@ -25,22 +25,23 @@ class Jugador(Juego):
     # Adiciona en una diccionario el id con nombre del jugador  que ingrese el usuario.
        
     def adiciona_jugador(self):
+        # crea un diccionario donde asigna un ID de jugador con valor diccionario de llave jugador con valor nombre jugador.
         cantidad_jugadores = int(input(self.cantidad_jugadores))
         jugadores_dict = {}
         for id_jugador in range(1, cantidad_jugadores+1):
             nombre_jugador = input(f'{self.dato_nombre_jugador}{id_jugador}: ')          
-            jugadores_dict[id_jugador+100] = {'jugador': nombre_jugador}
+            jugadores_dict[id_jugador+100] = {'jugador': nombre_jugador} # diccionario  llave id con llave jugador con valor nombre del jugador
         return jugadores_dict          
 
 
 class Conductor(Jugador):
-    # Agrega un ID a cada jugador conteniendo nombre del jugador.    
+    # Agrega al diccionario de jugadores el nombre de conductor.    
     def adiciona_conductor(self):
         jugadores_dict = self.adiciona_jugador()
         for id_jugador in jugadores_dict.keys():
             nombre_jugador = jugadores_dict[id_jugador]['jugador']
             nombre_conductor = input(f'para el jugador {nombre_jugador} {self.dato_nombre_conductor}: ')
-            jugadores_dict[id_jugador]['conductor'] = nombre_conductor
+            jugadores_dict[id_jugador]['conductor'] = nombre_conductor # aciciono llave conductor y su valor
         return jugadores_dict
 
 
@@ -60,38 +61,39 @@ class Pista(Carro):
         jugadores_dict = self.adiciona_carro()
         distancia_km = int(input("Ingrese el valor entero de límete de KM de la pista: "))
         for id_jugador in jugadores_dict.keys():
-            jugadores_dict[id_jugador]['pista'] = distancia_km
+            jugadores_dict[id_jugador]['pista'] = distancia_km # adiciono llave pista y valor
         return jugadores_dict
 
 
 class Carriles(Pista):
+    # agrega en # carril de acuerdo a las cantidad de carros automáticamente de forma descendente.
     def numero_carriles(self):
         jugadores_dict = self.distancia_pista()
         cantidad_carros = len(list(jugadores_dict.keys()))
         for carro in jugadores_dict.keys():
-            jugadores_dict[carro]['carril'] = cantidad_carros
+            jugadores_dict[carro]['carril'] = cantidad_carros # adiciono llave carril y valor
             cantidad_carros -= 1
         return jugadores_dict
-        
+
 
 class Podio():
-    # podio nombre jugador 
-    # posición 1 = oro
-    # posicion 2 = plata
-    # posicion 3 = bronce
-    # historico ganadores con ID juego
+    # contiene un dado de 1 a 6 para avanzar en multiplos de 100 metros cada carro.
+    # Hace la converción en metros de la distancia restante para llegar
+    # los tre primeros en llegar reciben podio con valor oro, plata y bronce respectivamente.
+    #def run_carrera()
     pass
+    
 
 """
 n_jugadores = int(input("Número de jugadores: " ))
 inicio_juego = Juego(n_jugadores)
 print(inicio_juego.bienvenida
 """
-
-jugador = Carriles()  
-print(jugador.bienvenida)  
-jugadores_dict = jugador.numero_carriles()
-print(jugadores_dict)
+if __name__ == "__main__":
+    jugador = Carriles()
+    print(jugador.bienvenida)
+    jugadores_dict = jugador.numero_carriles()
+    print(jugadores_dict)
 
 
 
