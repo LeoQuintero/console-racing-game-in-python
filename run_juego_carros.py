@@ -61,12 +61,18 @@ class Pista(Carro):
         distancia_km = int(input("Ingrese el valor entero de límete de KM de la pista: "))
         for id_jugador in jugadores_dict.keys():
             jugadores_dict[id_jugador]['pista'] = distancia_km
-        return jugadores_dict                
+        return jugadores_dict
 
-class Carriles():
-    # Número Carril
-    # Carro asociado    
-    pass
+
+class Carriles(Pista):
+    def numero_carriles(self):
+        jugadores_dict = self.distancia_pista()
+        cantidad_carros = len(list(jugadores_dict.keys()))
+        for carro in jugadores_dict.keys():
+            jugadores_dict[carro]['carril'] = cantidad_carros
+            cantidad_carros -= 1
+        return jugadores_dict
+        
 
 class Podio():
     # podio nombre jugador 
@@ -82,9 +88,9 @@ inicio_juego = Juego(n_jugadores)
 print(inicio_juego.bienvenida
 """
 
-jugador = Pista()  
+jugador = Carriles()  
 print(jugador.bienvenida)  
-jugadores_dict = jugador.distancia_pista()
+jugadores_dict = jugador.numero_carriles()
 print(jugadores_dict)
 
 
