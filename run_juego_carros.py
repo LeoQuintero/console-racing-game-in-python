@@ -17,6 +17,7 @@ class Juego():
         self.dato_nombre_jugador = 'Ingrese el nombre del jugador #'
         self.dato_nombre_conductor = "Asigne un nombre a su conductor: "
         self.dato_marca_carro = "eliga una opción para marca de carro:\n 1. Lotus Evija\n 2. NIO EP9\n"
+        
             
                
         
@@ -32,7 +33,8 @@ class Jugador(Juego):
         return jugadores_dict          
 
 
-class Conductor(Jugador):    
+class Conductor(Jugador):
+    # Agrega un ID a cada jugador conteniendo nombre del jugador.    
     def adiciona_conductor(self):
         jugadores_dict = self.adiciona_jugador()
         for id_jugador in jugadores_dict.keys():
@@ -43,20 +45,25 @@ class Conductor(Jugador):
 
 
 class Carro(Conductor):
+    # Agrega según elecciónn del usuario el carro a cada conductor.
     def adiciona_carro(self):
         jugadores_dict = self.adiciona_conductor()
         for id_jugador in jugadores_dict.keys():
             nombre_conductor = jugadores_dict[id_jugador]['conductor']
-            nombre_carro = input(f'para el jugador {nombre_conductor} {self.dato_marca_carro} : ')
-            jugadores_dict[id_jugador]['carro'] = nombre_carro
-        return jugadores_dict  
+            tipo_carro = input(f'para el jugador {nombre_conductor} {self.dato_marca_carro} : ')
+            jugadores_dict[id_jugador]['carro'] = tipo_carro
+        return jugadores_dict 
 
-class Pista():
-    # límite distancia
-    # cantidad carriles ej: 3 carriles
-    pass  
+class Pista(Carro):
+    #Agrega la pista con la distancia en kilómetros segun valor ingresado por usuario.
+    def distancia_pista(self):
+        jugadores_dict = self.adiciona_carro()
+        distancia_km = int(input("Ingrese el valor entero de límete de KM de la pista: "))
+        for id_jugador in jugadores_dict.keys():
+            jugadores_dict[id_jugador]['pista'] = distancia_km
+        return jugadores_dict                
 
-class Carril():
+class Carriles():
     # Número Carril
     # Carro asociado    
     pass
@@ -66,6 +73,7 @@ class Podio():
     # posición 1 = oro
     # posicion 2 = plata
     # posicion 3 = bronce
+    # historico ganadores con ID juego
     pass
 
 """
@@ -74,9 +82,9 @@ inicio_juego = Juego(n_jugadores)
 print(inicio_juego.bienvenida
 """
 
-jugador = Carro()  
+jugador = Pista()  
 print(jugador.bienvenida)  
-jugadores_dict = jugador.adiciona_carro()
+jugadores_dict = jugador.distancia_pista()
 print(jugadores_dict)
 
 
