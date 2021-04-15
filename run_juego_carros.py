@@ -76,12 +76,30 @@ class Carriles(Pista):
         return jugadores_dict
 
 
-class Podio():
+class Podio(Carriles):
     # contiene un dado de 1 a 6 para avanzar en multiplos de 100 metros cada carro.
     # Hace la converción en metros de la distancia restante para llegar
     # los tre primeros en llegar reciben podio con valor oro, plata y bronce respectivamente.
-    #def run_carrera()
-    pass
+    def run_carrera(self):
+        jugadores_dict = self.numero_carriles()  # traemos el diccionario actualizado de la clase Carriles
+        for carro in jugadores_dict.keys():            
+            jugadores_dict[carro]['metrosRecorrido'] = 0 
+            metros_recorridos = jugadores_dict[carro]['metrosRecorrido']
+            distancia_total_mt = jugadores_dict[carro]['pista'] * 100
+        """
+        for carro in jugadores_dict.keys(): 
+            if metros_recorridos < distancia_total_mt:
+                dado = random.randrange(1,7) * 100
+                metros_recorridos += dado   
+            else:
+                conductor =  jugadores_dict[carro]['conductor']  
+                print(f'el {conductor} es el ganador')  
+                break         
+        """             
+        return jugadores_dict
+
+        
+    
     
 
 """
@@ -89,15 +107,14 @@ n_jugadores = int(input("Número de jugadores: " ))
 inicio_juego = Juego(n_jugadores)
 print(inicio_juego.bienvenida
 """
-if __name__ == "__main__":
-    jugador = Carriles()
+if __name__ == "__main__":        # --> entry point
+
+    jugador = Podio()
     print(jugador.bienvenida)
-    jugadores_dict = jugador.numero_carriles()
+    jugadores_dict = jugador.run_carrera()
     print(jugadores_dict)
 
 
 
-# preguntar marca carro
-# preguntar cantidad km de la pista.
-# los carriles van orden de llegada jugador1 con carril1, jugador2 con carril3, jugador3 con carril3
+
 
